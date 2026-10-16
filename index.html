@@ -934,123 +934,117 @@
         gap: 20px;
         align-items: flex-start;
       }
-      .svc-grid {
+      /* Service cards: tall photo, label top-left, copy + footer link at the bottom */
+      .svc-cards {
         display: grid;
-        grid-template-columns: repeat(12, minmax(0, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 20px;
       }
-      .svc-tile {
-        grid-column: span 5;
+      .svc-card {
         position: relative;
         isolation: isolate;
-        min-height: clamp(340px, 34vw, 440px);
-        border-radius: 24px;
         overflow: hidden;
-        color: #fff;
-        text-decoration: none;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
+        min-height: 500px;
+        padding: 30px 26px 26px;
+        border-radius: var(--radius);
+        background: #1a1a1a;
+        color: #fff;
+        text-decoration: none;
       }
-      .svc-tile.wide {
-        grid-column: span 7;
-      }
-      .svc-tile .img {
+      .svc-card img {
         position: absolute;
         inset: 0;
         z-index: -2;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
       }
-      .svc-tile::after {
+      .svc-card img.missing {
+        visibility: hidden;
+      }
+      .svc-card::before {
         content: "";
         position: absolute;
         inset: 0;
         z-index: -1;
         background: linear-gradient(
           180deg,
-          rgba(0, 0, 0, 0.15) 0%,
-          rgba(0, 0, 0, 0.25) 40%,
-          rgba(0, 0, 0, 0.9) 100%
+          rgba(0, 0, 0, 0.05) 20%,
+          rgba(0, 0, 0, 0.7) 58%,
+          rgba(0, 0, 0, 0.94) 100%
         );
       }
-      .svc-tile:hover .img img {
-        transform: scale(1.06);
+      .svc-card:hover img {
+        transform: scale(1.05);
       }
-      .svc-top {
-        position: absolute;
-        top: 22px;
-        left: 22px;
-        right: 22px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-      .svc-idx {
-        font-family: var(--display);
-        font-weight: 800;
-        font-size: 14px;
-        color: #000;
-        background: var(--brand);
-        border-radius: 999px;
-        padding: 6px 13px;
-      }
-      .svc-go {
-        width: 54px;
-        height: 54px;
-        border-radius: 50%;
-        background: #fff;
-        color: #000;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        transition: background-color 0.25s ease;
-      }
-      .svc-go svg {
-        width: 22px;
-        height: 22px;
-        transform: rotate(-45deg);
-        transition: transform 0.3s ease;
-      }
-      .svc-tile:hover .svc-go,
-      .svc-tile:focus-visible .svc-go {
-        background: var(--brand);
-      }
-      .svc-tile:hover .svc-go svg,
-      .svc-tile:focus-visible .svc-go svg {
-        transform: none;
-      }
-      .svc-tile:focus-visible {
+      .svc-card:focus-visible {
         outline: 3px solid var(--brand);
         outline-offset: 3px;
       }
-      .svc-body {
-        padding: clamp(22px, 2.6vw, 32px);
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        max-width: 560px;
-      }
-      .svc-body h3 {
-        font-size: clamp(24px, 2.4vw, 32px);
-      }
-      .svc-body p {
-        font-size: 16px;
-        line-height: 1.55;
-        color: rgba(255, 255, 255, 0.84);
-      }
-      .svc-tags {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-        margin-top: 6px;
-      }
-      .svc-tags span {
+      .svc-no {
+        position: absolute;
+        top: 24px;
+        left: 26px;
         font-size: 12px;
-        font-weight: 600;
-        letter-spacing: 0.02em;
-        border: 1px solid rgba(255, 255, 255, 0.4);
+        font-weight: 700;
+        line-height: 1;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: #000;
+        background: var(--brand);
+        padding: 8px 11px;
         border-radius: 999px;
-        padding: 5px 12px;
-        background: rgba(0, 0, 0, 0.25);
+      }
+      .svc-card h3 {
+        font-size: clamp(22px, 2vw, 27px);
+        line-height: 1.15;
+      }
+      .svc-card p {
+        margin-top: 12px;
+        font-size: 15px;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .svc-foot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 24px;
+        padding-top: 18px;
+        border-top: 1px solid rgba(255, 255, 255, 0.28);
+        font-size: 14px;
+        font-weight: 700;
+      }
+      .svc-foot i {
+        width: 44px;
+        height: 44px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        transition:
+          background-color 0.25s ease,
+          border-color 0.25s ease,
+          color 0.25s ease;
+      }
+      .svc-foot svg {
+        width: 18px;
+        height: 18px;
+      }
+      .svc-card:hover .svc-foot i,
+      .svc-card:focus-visible .svc-foot i {
+        background: var(--brand);
+        border-color: var(--brand);
+        color: #000;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .svc-card img {
+          transition: none;
+        }
       }
       .svc-strip {
         margin-top: 20px;
@@ -1078,10 +1072,21 @@
         color: var(--muted);
         margin-top: 4px;
       }
-      @media (max-width: 900px) {
-        .svc-tile,
-        .svc-tile.wide {
-          grid-column: span 12;
+      @media (max-width: 1100px) {
+        .svc-cards {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .svc-card {
+          min-height: 440px;
+        }
+      }
+      @media (max-width: 640px) {
+        .svc-cards {
+          grid-template-columns: 1fr;
+          gap: 16px;
+        }
+        .svc-card {
+          min-height: 380px;
         }
       }
       .more {
@@ -1417,7 +1422,7 @@
       .gallery figure {
         margin: 0;
         border-radius: var(--radius);
-        border: 1px solid rgba(255, 255, 255, 0.1);
+        border: 1px solid var(--line);
       }
       .gallery figure.tall {
         grid-row: span 2;
@@ -1440,7 +1445,12 @@
       .gallery figure {
         position: relative;
         overflow: hidden;
-        transition: transform 0.25s ease;
+        transition:
+          transform 0.25s ease,
+          box-shadow 0.25s ease;
+      }
+      .gallery figure:hover {
+        box-shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.3);
       }
       .gallery figure:hover img {
         transform: scale(1.05);
@@ -1890,7 +1900,33 @@
       .faq-q[aria-expanded="true"] .pm svg {
         stroke: #000;
       }
+      /* Answers animate open by transitioning the grid row from 0fr to 1fr */
       .faq-a {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+      .faq-a.open {
+        grid-template-rows: 1fr;
+      }
+      .faq-a-in {
+        min-height: 0;
+        overflow: hidden;
+        visibility: hidden;
+        opacity: 0;
+        transition:
+          opacity 0.3s ease,
+          visibility 0s linear 0.4s;
+      }
+      .faq-a.open .faq-a-in {
+        visibility: visible;
+        opacity: 1;
+        transition:
+          opacity 0.35s ease 0.08s,
+          visibility 0s;
+      }
+      .faq-a p {
+        margin: 0;
         padding: 0 24px 22px;
         font-size: 16px;
         line-height: 1.7;
@@ -2186,12 +2222,12 @@
           0 0 0 70px rgba(255, 255, 255, 0.015),
           0 0 0 140px rgba(255, 255, 255, 0.012);
       }
-      /* Gallery: fine line grid fading out */
+      /* Gallery (light): fine line grid fading out */
       .pat-grid::before {
         inset: 0;
         background-image:
-          linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+          linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
         background-size: 64px 64px;
         -webkit-mask-image: linear-gradient(180deg, #000 0%, transparent 75%);
         mask-image: linear-gradient(180deg, #000 0%, transparent 75%);
@@ -2203,7 +2239,7 @@
         top: -120px;
         background: radial-gradient(
           circle,
-          rgba(248, 152, 29, 0.22),
+          rgba(248, 152, 29, 0.18),
           transparent 65%
         );
       }
@@ -2275,11 +2311,16 @@
         .badge {
           right: 12px;
         }
-        .faq-a {
-          padding-right: 0;
+        .faq-a p {
+          padding-right: 24px;
         }
       }
       @media (prefers-reduced-motion: reduce) {
+        .faq-a,
+        .faq-a-in,
+        .faq-a.open .faq-a-in {
+          transition: none;
+        }
         html {
           scroll-behavior: auto;
         }
@@ -2593,151 +2634,94 @@
               </p>
             </div>
           </div>
-          <div class="svc-grid">
-            <a
-              href="https://www.visualdynamics.co.nz/service/tv-wall-mounting/"
-              class="svc-tile wide rv"
-            >
-              <div class="img dk">
-                <img
-                  src="https://www.visualdynamics.co.nz/wp-content/uploads/2019/11/service_2.jpg"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <div class="svc-top">
-                <span class="svc-idx">01</span
-                ><span class="svc-go" aria-hidden="true"
+          <div class="svc-cards">
+            <a href="https://www.visualdynamics.co.nz/service/tv-wall-mounting/" class="svc-card rv">
+              <img src="https://www.visualdynamics.co.nz/wp-content/uploads/2019/11/service_2.jpg" alt="Wall-mounted TV installed by Visual Dynamics" loading="lazy" />
+              <span class="svc-no">Service 01</span>
+              <h3>TV Wall Mount Installation</h3>
+              <p>Quality TV wall mount installations for every size and model of television, with a full range of mount options.</p>
+              <span class="svc-foot"
+                >Learn more
+                <i
                   ><svg
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="2.4"
+                    stroke-width="2.2"
                     stroke-linecap="round"
                     stroke-linejoin="round"
+                    aria-hidden="true"
                   >
                     <path d="M5 12h14M13 6l6 6-6 6" /></svg
-                ></span>
-              </div>
-              <div class="svc-body">
-                <h3>TV Wall Mount Installation</h3>
-                <p>
-                  Quality TV wall mount installations for every size and model
-                  of television. Full range of TV wall mount options available.
-                </p>
-                <div class="svc-tags">
-                  <span>All TV sizes</span><span>Tilt &amp; swivel mounts</span
-                  ><span>Hidden cabling</span>
-                </div>
-              </div>
+                ></i
+                ></span
+              >
             </a>
-            <a
-              href="https://www.visualdynamics.co.nz/tv-aerial-install/"
-              class="svc-tile rv"
-            >
-              <div class="img dk">
-                <img
-                  src="https://www.visualdynamics.co.nz/wp-content/uploads/2019/11/service_1.jpg"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <div class="svc-top">
-                <span class="svc-idx">02</span
-                ><span class="svc-go" aria-hidden="true"
+            <a href="https://www.visualdynamics.co.nz/tv-aerial-install/" class="svc-card rv">
+              <img src="https://www.visualdynamics.co.nz/wp-content/uploads/2019/11/service_1.jpg" alt="UHF digital TV aerial on a roof" loading="lazy" />
+              <span class="svc-no">Service 02</span>
+              <h3>TV Aerial Installation</h3>
+              <p>Quality UHF digital TV aerials installed at competitive prices, with clear Freeview reception.</p>
+              <span class="svc-foot"
+                >Learn more
+                <i
                   ><svg
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="2.4"
+                    stroke-width="2.2"
                     stroke-linecap="round"
                     stroke-linejoin="round"
+                    aria-hidden="true"
                   >
                     <path d="M5 12h14M13 6l6 6-6 6" /></svg
-                ></span>
-              </div>
-              <div class="svc-body">
-                <h3>TV Aerial Installation</h3>
-                <p>
-                  Quality UHF digital TV aerials installed at competitive
-                  prices, with clear Freeview reception.
-                </p>
-                <div class="svc-tags">
-                  <span>UHF digital</span><span>Repairs</span>
-                </div>
-              </div>
+                ></i
+                ></span
+              >
             </a>
-            <a
-              href="https://www.visualdynamics.co.nz/freeview-box-auckland/"
-              class="svc-tile rv"
-            >
-              <div class="img dk">
-                <img
-                  src="https://www.visualdynamics.co.nz/wp-content/uploads/2019/11/20230522_112847-1.jpg"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <div class="svc-top">
-                <span class="svc-idx">03</span
-                ><span class="svc-go" aria-hidden="true"
+            <a href="https://www.visualdynamics.co.nz/freeview-box-auckland/" class="svc-card rv">
+              <img src="https://www.visualdynamics.co.nz/wp-content/uploads/2019/11/20230522_112847-1.jpg" alt="TV and soundbar installed in a living room" loading="lazy" />
+              <span class="svc-no">Service 03</span>
+              <h3>Freeview Installation</h3>
+              <p>Freeview box and aerial installation for homes and commercial buildings, extended to multiple rooms.</p>
+              <span class="svc-foot"
+                >Learn more
+                <i
                   ><svg
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="2.4"
+                    stroke-width="2.2"
                     stroke-linecap="round"
                     stroke-linejoin="round"
+                    aria-hidden="true"
                   >
                     <path d="M5 12h14M13 6l6 6-6 6" /></svg
-                ></span>
-              </div>
-              <div class="svc-body">
-                <h3>Freeview Installation</h3>
-                <p>
-                  Freeview box and aerial installation for homes and commercial
-                  buildings, extended to multiple rooms.
-                </p>
-                <div class="svc-tags">
-                  <span>Freeview box</span><span>Multi-room</span>
-                </div>
-              </div>
+                ></i
+                ></span
+              >
             </a>
-            <a
-              href="https://www.visualdynamics.co.nz/service/watch-sky-another/"
-              class="svc-tile wide rv"
-            >
-              <div class="img dk">
-                <img
-                  src="https://www.visualdynamics.co.nz/wp-content/uploads/2019/11/sky-inm1.webp"
-                  alt=""
-                  loading="lazy"
-                />
-              </div>
-              <div class="svc-top">
-                <span class="svc-idx">04</span
-                ><span class="svc-go" aria-hidden="true"
+            <a href="https://www.visualdynamics.co.nz/service/watch-sky-another/" class="svc-card rv">
+              <img src="https://www.visualdynamics.co.nz/wp-content/uploads/2019/11/sky-inm1.webp" alt="Sky decoder and remote" loading="lazy" />
+              <span class="svc-no">Service 04</span>
+              <h3>Sky TV Distribution</h3>
+              <p>Share the same Sky content on all your TVs using one decoder, with Sky HD in every room.</p>
+              <span class="svc-foot"
+                >Learn more
+                <i
                   ><svg
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
-                    stroke-width="2.4"
+                    stroke-width="2.2"
                     stroke-linecap="round"
                     stroke-linejoin="round"
+                    aria-hidden="true"
                   >
                     <path d="M5 12h14M13 6l6 6-6 6" /></svg
-                ></span>
-              </div>
-              <div class="svc-body">
-                <h3>Sky TV Distribution</h3>
-                <p>
-                  Share the same Sky content on all your TVs using one decoder.
-                  Sky HD can be viewed on all your TVs.
-                </p>
-                <div class="svc-tags">
-                  <span>One decoder</span><span>Sky HD in every room</span>
-                </div>
-              </div>
+                ></i
+                ></span
+              >
             </a>
           </div>
           <div class="svc-strip rv">
@@ -2925,7 +2909,7 @@
       </section>
 
       <!-- JOURNEY -->
-      <section class="sec" id="journey" data-slider>
+      <section class="sec" id="journey" data-slider hidden>
         <div class="wrap">
           <div class="sec-head">
             <div>
@@ -3355,7 +3339,7 @@
       </section>
 
       <!-- SERVICE AREA -->
-      <section class="sec soft" id="service-area">
+      <section class="sec soft" id="service-area" hidden>
         <div class="wrap split">
           <div class="about-copy">
             <div class="eyebrow" style="margin-bottom: 0">Service Area</div>
@@ -3546,18 +3530,18 @@
       </section>
 
       <!-- GALLERY -->
-      <section class="sec dark pat pat-grid" id="gallery">
+      <section class="sec soft pat pat-grid" id="gallery">
         <div class="wrap">
           <div class="sec-head">
             <div>
               <div class="eyebrow">Gallery</div>
               <h2 class="rv">
-                Our recent <span class="hl">installations</span>
+                Our recent <span class="ul">installations</span>
               </h2>
             </div>
             <a
               href="https://www.visualdynamics.co.nz/service/tv-wall-mounting/"
-              class="btn btn-ghost"
+              class="btn btn-outline"
               >View full gallery</a
             >
           </div>
@@ -3627,7 +3611,7 @@
       </section>
 
       <!-- CTA -->
-      <section class="sec" style="padding-bottom: 0">
+      <section class="sec" id="cta" style="padding-bottom: 0" hidden>
         <div class="wrap">
           <div class="cta rv">
             <div>
@@ -3672,7 +3656,7 @@
       </section>
 
       <!-- FAQ -->
-      <section class="sec" id="faq">
+      <section class="sec" id="faq" hidden>
         <div class="wrap">
           <div class="faq">
             <div class="faq-side">
@@ -3729,8 +3713,12 @@
                       <path d="M12 5v14M5 12h14" /></svg
                   ></span>
                 </button>
-                <div class="faq-a">
-                  We service Central Auckland, West Auckland and North Shore.
+                <div class="faq-a open">
+                  <div class="faq-a-in">
+                    <p>
+                      We service Central Auckland, West Auckland and North Shore.
+                    </p>
+                  </div>
                 </div>
               </div>
               <div class="faq-item rv">
@@ -3747,8 +3735,12 @@
                       <path d="M12 5v14M5 12h14" /></svg
                   ></span>
                 </button>
-                <div class="faq-a" hidden>
-                  We offer same or next day service.
+                <div class="faq-a">
+                  <div class="faq-a-in">
+                    <p>
+                      We offer same or next day service.
+                    </p>
+                  </div>
                 </div>
               </div>
               <div class="faq-item rv">
@@ -3765,9 +3757,13 @@
                       <path d="M12 5v14M5 12h14" /></svg
                   ></span>
                 </button>
-                <div class="faq-a" hidden>
-                  We supply high-quality products that are backed by a 10-year
-                  parts and labour warranty.
+                <div class="faq-a">
+                  <div class="faq-a-in">
+                    <p>
+                      We supply high-quality products that are backed by a 10-year
+                      parts and labour warranty.
+                    </p>
+                  </div>
                 </div>
               </div>
               <div class="faq-item rv">
@@ -3784,11 +3780,15 @@
                       <path d="M12 5v14M5 12h14" /></svg
                   ></span>
                 </button>
-                <div class="faq-a" hidden>
-                  We offer a no-obligation quote over the phone, or a
-                  consultation in your home for $100.00, which is refundable
-                  against your installation costs. Call 0800 732 378 or fill out
-                  the enquiry form.
+                <div class="faq-a">
+                  <div class="faq-a-in">
+                    <p>
+                      We offer a no-obligation quote over the phone, or a
+                      consultation in your home for $100.00, which is refundable
+                      against your installation costs. Call 0800 732 378 or fill out
+                      the enquiry form.
+                    </p>
+                  </div>
                 </div>
               </div>
               <div class="faq-item rv">
@@ -3805,10 +3805,14 @@
                       <path d="M12 5v14M5 12h14" /></svg
                   ></span>
                 </button>
-                <div class="faq-a" hidden>
-                  Yes. We perform signal tests and discuss options with you
-                  before deciding to set up a system, and our specialists
-                  suggest the best solution to fit your needs and budget.
+                <div class="faq-a">
+                  <div class="faq-a-in">
+                    <p>
+                      Yes. We perform signal tests and discuss options with you
+                      before deciding to set up a system, and our specialists
+                      suggest the best solution to fit your needs and budget.
+                    </p>
+                  </div>
                 </div>
               </div>
               <div class="faq-item rv">
@@ -3825,10 +3829,14 @@
                       <path d="M12 5v14M5 12h14" /></svg
                   ></span>
                 </button>
-                <div class="faq-a" hidden>
-                  Yes. If your television is playing up, we can replace your
-                  outdated aerial with a digital one designed for Freeview
-                  reception.
+                <div class="faq-a">
+                  <div class="faq-a-in">
+                    <p>
+                      Yes. If your television is playing up, we can replace your
+                      outdated aerial with a digital one designed for Freeview
+                      reception.
+                    </p>
+                  </div>
                 </div>
               </div>
               <div class="faq-item rv">
@@ -3845,10 +3853,14 @@
                       <path d="M12 5v14M5 12h14" /></svg
                   ></span>
                 </button>
-                <div class="faq-a" hidden>
-                  Yes. Sky TV distribution lets you share the same Sky content
-                  on all your TVs using one decoder, and Sky HD can be viewed on
-                  all your TVs.
+                <div class="faq-a">
+                  <div class="faq-a-in">
+                    <p>
+                      Yes. Sky TV distribution lets you share the same Sky content
+                      on all your TVs using one decoder, and Sky HD can be viewed on
+                      all your TVs.
+                    </p>
+                  </div>
                 </div>
               </div>
               <div class="faq-item rv">
@@ -3865,10 +3877,14 @@
                       <path d="M12 5v14M5 12h14" /></svg
                   ></span>
                 </button>
-                <div class="faq-a" hidden>
-                  Yes. We offer Freeview TV aerial installation for both
-                  domestic and commercial buildings, including extension to
-                  multiple rooms and amplification and distribution systems.
+                <div class="faq-a">
+                  <div class="faq-a-in">
+                    <p>
+                      Yes. We offer Freeview TV aerial installation for both
+                      domestic and commercial buildings, including extension to
+                      multiple rooms and amplification and distribution systems.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -3877,7 +3893,7 @@
       </section>
 
       <!-- REVIEWS -->
-      <section class="sec soft" id="reviews" data-slider data-autoplay>
+      <section class="sec soft" id="reviews" data-slider data-autoplay hidden>
         <div class="wrap">
           <div class="sec-head">
             <div>
@@ -4404,11 +4420,11 @@
             var open = q.getAttribute("aria-expanded") === "true";
             qs.forEach(function (o) {
               o.setAttribute("aria-expanded", "false");
-              o.nextElementSibling.hidden = true;
+              o.nextElementSibling.classList.remove("open");
             });
             if (!open) {
               q.setAttribute("aria-expanded", "true");
-              q.nextElementSibling.hidden = false;
+              q.nextElementSibling.classList.add("open");
             }
           });
         });
