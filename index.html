@@ -978,8 +978,62 @@
           rgba(0, 0, 0, 0.94) 100%
         );
       }
+      .svc-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: rgba(0, 0, 0, 0.35);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+      }
       .svc-card:hover img {
         transform: scale(1.05);
+      }
+      .svc-more {
+        display: grid;
+        grid-template-rows: 1fr;
+      }
+      .svc-more-in {
+        min-height: 0;
+        overflow: hidden;
+      }
+      /* Mouse users: show the full photo with just the title, reveal the rest on hover/focus.
+         Touch screens have no hover, so they keep the content visible. */
+      @media (hover: hover) and (pointer: fine) {
+        .svc-card::before {
+          background: linear-gradient(
+            180deg,
+            transparent 50%,
+            rgba(0, 0, 0, 0.55) 78%,
+            rgba(0, 0, 0, 0.85) 100%
+          );
+        }
+        .svc-more {
+          grid-template-rows: 0fr;
+          transition: grid-template-rows 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+        .svc-more-in {
+          opacity: 0;
+          transform: translateY(14px);
+          transition:
+            opacity 0.3s ease,
+            transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+        .svc-card:hover::after,
+        .svc-card:focus-visible::after {
+          opacity: 1;
+        }
+        .svc-card:hover .svc-more,
+        .svc-card:focus-visible .svc-more {
+          grid-template-rows: 1fr;
+        }
+        .svc-card:hover .svc-more-in,
+        .svc-card:focus-visible .svc-more-in {
+          opacity: 1;
+          transform: none;
+          transition-delay: 0.08s;
+        }
       }
       .svc-card:focus-visible {
         outline: 3px solid var(--brand);
@@ -1042,8 +1096,11 @@
         color: #000;
       }
       @media (prefers-reduced-motion: reduce) {
-        .svc-card img {
-          transition: none;
+        .svc-card img,
+        .svc-card::after,
+        .svc-more,
+        .svc-more-in {
+          transition: none !important;
         }
       }
       .svc-strip {
@@ -2635,93 +2692,141 @@
             </div>
           </div>
           <div class="svc-cards">
-            <a href="https://www.visualdynamics.co.nz/service/tv-wall-mounting/" class="svc-card rv">
-              <img src="https://www.visualdynamics.co.nz/wp-content/uploads/2019/11/service_2.jpg" alt="Wall-mounted TV installed by Visual Dynamics" loading="lazy" />
+            <a
+              href="https://www.visualdynamics.co.nz/service/tv-wall-mounting/"
+              class="svc-card rv"
+            >
+              <img
+                src="https://www.visualdynamics.co.nz/wp-content/uploads/2019/11/service_2.jpg"
+                alt="Wall-mounted TV installed by Visual Dynamics"
+                loading="lazy"
+              />
               <span class="svc-no">Service 01</span>
               <h3>TV Wall Mount Installation</h3>
-              <p>Quality TV wall mount installations for every size and model of television, with a full range of mount options.</p>
-              <span class="svc-foot"
-                >Learn more
-                <i
-                  ><svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M5 12h14M13 6l6 6-6 6" /></svg
-                ></i
-                ></span
-              >
+              <div class="svc-more">
+                <div class="svc-more-in">
+                  <p>
+                    Quality TV wall mount installations for every size and model
+                    of television, with a full range of mount options.
+                  </p>
+                  <span class="svc-foot"
+                    >Learn more
+                    <i
+                      ><svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M5 12h14M13 6l6 6-6 6" /></svg></i
+                  ></span>
+                </div>
+              </div>
             </a>
-            <a href="https://www.visualdynamics.co.nz/tv-aerial-install/" class="svc-card rv">
-              <img src="https://www.visualdynamics.co.nz/wp-content/uploads/2019/11/service_1.jpg" alt="UHF digital TV aerial on a roof" loading="lazy" />
+            <a
+              href="https://www.visualdynamics.co.nz/tv-aerial-install/"
+              class="svc-card rv"
+            >
+              <img
+                src="https://www.visualdynamics.co.nz/wp-content/uploads/2019/11/service_1.jpg"
+                alt="UHF digital TV aerial on a roof"
+                loading="lazy"
+              />
               <span class="svc-no">Service 02</span>
               <h3>TV Aerial Installation</h3>
-              <p>Quality UHF digital TV aerials installed at competitive prices, with clear Freeview reception.</p>
-              <span class="svc-foot"
-                >Learn more
-                <i
-                  ><svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M5 12h14M13 6l6 6-6 6" /></svg
-                ></i
-                ></span
-              >
+              <div class="svc-more">
+                <div class="svc-more-in">
+                  <p>
+                    Quality UHF digital TV aerials installed at competitive
+                    prices, with clear Freeview reception.
+                  </p>
+                  <span class="svc-foot"
+                    >Learn more
+                    <i
+                      ><svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M5 12h14M13 6l6 6-6 6" /></svg></i
+                  ></span>
+                </div>
+              </div>
             </a>
-            <a href="https://www.visualdynamics.co.nz/freeview-box-auckland/" class="svc-card rv">
-              <img src="https://www.visualdynamics.co.nz/wp-content/uploads/2019/11/20230522_112847-1.jpg" alt="TV and soundbar installed in a living room" loading="lazy" />
+            <a
+              href="https://www.visualdynamics.co.nz/freeview-box-auckland/"
+              class="svc-card rv"
+            >
+              <img
+                src="https://www.visualdynamics.co.nz/wp-content/uploads/2019/11/20230522_112847-1.jpg"
+                alt="TV and soundbar installed in a living room"
+                loading="lazy"
+              />
               <span class="svc-no">Service 03</span>
               <h3>Freeview Installation</h3>
-              <p>Freeview box and aerial installation for homes and commercial buildings, extended to multiple rooms.</p>
-              <span class="svc-foot"
-                >Learn more
-                <i
-                  ><svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M5 12h14M13 6l6 6-6 6" /></svg
-                ></i
-                ></span
-              >
+              <div class="svc-more">
+                <div class="svc-more-in">
+                  <p>
+                    Freeview box and aerial installation for homes and
+                    commercial buildings, extended to multiple rooms.
+                  </p>
+                  <span class="svc-foot"
+                    >Learn more
+                    <i
+                      ><svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M5 12h14M13 6l6 6-6 6" /></svg></i
+                  ></span>
+                </div>
+              </div>
             </a>
-            <a href="https://www.visualdynamics.co.nz/service/watch-sky-another/" class="svc-card rv">
-              <img src="https://www.visualdynamics.co.nz/wp-content/uploads/2019/11/sky-inm1.webp" alt="Sky decoder and remote" loading="lazy" />
+            <a
+              href="https://www.visualdynamics.co.nz/service/watch-sky-another/"
+              class="svc-card rv"
+            >
+              <img
+                src="https://www.visualdynamics.co.nz/wp-content/uploads/2019/11/sky-inm1.webp"
+                alt="Sky decoder and remote"
+                loading="lazy"
+              />
               <span class="svc-no">Service 04</span>
               <h3>Sky TV Distribution</h3>
-              <p>Share the same Sky content on all your TVs using one decoder, with Sky HD in every room.</p>
-              <span class="svc-foot"
-                >Learn more
-                <i
-                  ><svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2.2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M5 12h14M13 6l6 6-6 6" /></svg
-                ></i
-                ></span
-              >
+              <div class="svc-more">
+                <div class="svc-more-in">
+                  <p>
+                    Share the same Sky content on all your TVs using one
+                    decoder, with Sky HD in every room.
+                  </p>
+                  <span class="svc-foot"
+                    >Learn more
+                    <i
+                      ><svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M5 12h14M13 6l6 6-6 6" /></svg></i
+                  ></span>
+                </div>
+              </div>
             </a>
           </div>
           <div class="svc-strip rv">
@@ -3716,7 +3821,8 @@
                 <div class="faq-a open">
                   <div class="faq-a-in">
                     <p>
-                      We service Central Auckland, West Auckland and North Shore.
+                      We service Central Auckland, West Auckland and North
+                      Shore.
                     </p>
                   </div>
                 </div>
@@ -3737,9 +3843,7 @@
                 </button>
                 <div class="faq-a">
                   <div class="faq-a-in">
-                    <p>
-                      We offer same or next day service.
-                    </p>
+                    <p>We offer same or next day service.</p>
                   </div>
                 </div>
               </div>
@@ -3760,8 +3864,8 @@
                 <div class="faq-a">
                   <div class="faq-a-in">
                     <p>
-                      We supply high-quality products that are backed by a 10-year
-                      parts and labour warranty.
+                      We supply high-quality products that are backed by a
+                      10-year parts and labour warranty.
                     </p>
                   </div>
                 </div>
@@ -3785,8 +3889,8 @@
                     <p>
                       We offer a no-obligation quote over the phone, or a
                       consultation in your home for $100.00, which is refundable
-                      against your installation costs. Call 0800 732 378 or fill out
-                      the enquiry form.
+                      against your installation costs. Call 0800 732 378 or fill
+                      out the enquiry form.
                     </p>
                   </div>
                 </div>
@@ -3856,9 +3960,9 @@
                 <div class="faq-a">
                   <div class="faq-a-in">
                     <p>
-                      Yes. Sky TV distribution lets you share the same Sky content
-                      on all your TVs using one decoder, and Sky HD can be viewed on
-                      all your TVs.
+                      Yes. Sky TV distribution lets you share the same Sky
+                      content on all your TVs using one decoder, and Sky HD can
+                      be viewed on all your TVs.
                     </p>
                   </div>
                 </div>
