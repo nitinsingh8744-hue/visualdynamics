@@ -26,6 +26,7 @@
         --ink: #000000;
         --ink-2: #0b0b0b;
         --ink-3: #151515;
+        --night: #171523;
         --line-dark: rgba(255, 255, 255, 0.14);
         --paper: #ffffff;
         --paper-2: #f5f5f4;
@@ -90,7 +91,7 @@
         padding: clamp(64px, 8vw, 120px) 0;
       }
       .dark {
-        background: var(--ink);
+        background: var(--night);
         color: #fff;
       }
       .soft {
@@ -202,48 +203,6 @@
       }
 
       /* Top bar */
-      .topbar {
-        background: var(--brand);
-        color: #000;
-        font-size: 13px;
-        font-weight: 600;
-        letter-spacing: 0.02em;
-      }
-      .topbar .wrap {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 16px;
-        flex-wrap: wrap;
-        padding-block: 10px;
-      }
-      .topbar .items {
-        display: flex;
-        gap: 20px;
-        flex-wrap: wrap;
-      }
-      .topbar .items span {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-      }
-      .topbar svg {
-        width: 16px;
-        height: 16px;
-        flex: none;
-      }
-      .topbar .phones a {
-        display: inline-flex;
-        align-items: center;
-        gap: 7px;
-      }
-      .topbar .phones {
-        display: flex;
-        gap: 20px;
-      }
-      .topbar a {
-        text-decoration: none;
-      }
 
       /* Header */
       .header {
@@ -441,7 +400,7 @@
       .hero {
         position: relative;
         color: #fff;
-        background: #000;
+        background: var(--night);
         isolation: isolate;
         overflow: hidden;
       }
@@ -458,14 +417,14 @@
         -webkit-mask-image: linear-gradient(
           90deg,
           transparent 0%,
-          rgba(0, 0, 0, 0.55) 22%,
-          #000 50%
+          rgba(0, 0, 0, 0.75) 18%,
+          #000 40%
         );
         mask-image: linear-gradient(
           90deg,
           transparent 0%,
-          rgba(0, 0, 0, 0.55) 22%,
-          #000 50%
+          rgba(0, 0, 0, 0.75) 18%,
+          #000 40%
         );
       }
       .hero::after {
@@ -487,13 +446,12 @@
           ),
           linear-gradient(
             90deg,
-            #000 0%,
-            rgba(0, 0, 0, 0.94) 30%,
-            rgba(0, 0, 0, 0.55) 52%,
-            rgba(0, 0, 0, 0.12) 78%,
-            rgba(0, 0, 0, 0.25) 100%
+            rgba(0, 0, 0, 0.82) 0%,
+            rgba(0, 0, 0, 0.6) 30%,
+            rgba(0, 0, 0, 0.22) 55%,
+            transparent 80%
           ),
-          linear-gradient(0deg, rgba(0, 0, 0, 0.55) 0%, transparent 30%);
+          linear-gradient(0deg, rgba(0, 0, 0, 0.35) 0%, transparent 25%);
       }
       @media (max-width: 900px) {
         .hero::before {
@@ -502,9 +460,9 @@
           -webkit-mask-image: linear-gradient(
             180deg,
             #000 0%,
-            rgba(0, 0, 0, 0.5) 100%
+            rgba(0, 0, 0, 0.8) 100%
           );
-          mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.5) 100%);
+          mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.8) 100%);
         }
         .hero::after {
           background:
@@ -515,9 +473,9 @@
             ),
             linear-gradient(
               180deg,
-              rgba(0, 0, 0, 0.55) 0%,
-              rgba(0, 0, 0, 0.82) 45%,
-              rgba(0, 0, 0, 0.92) 100%
+              rgba(0, 0, 0, 0.35) 0%,
+              rgba(0, 0, 0, 0.6) 45%,
+              rgba(0, 0, 0, 0.75) 100%
             );
         }
       }
@@ -947,7 +905,7 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        min-height: 500px;
+        min-height: 380px;
         padding: 30px 26px 26px;
         border-radius: var(--radius);
         background: #1a1a1a;
@@ -1120,7 +1078,7 @@
           grid-template-columns: repeat(2, minmax(0, 1fr));
         }
         .svc-card {
-          min-height: 440px;
+          min-height: 340px;
         }
       }
       @media (max-width: 640px) {
@@ -1129,7 +1087,7 @@
           gap: 16px;
         }
         .svc-card {
-          min-height: 380px;
+          min-height: 300px;
         }
       }
       .more {
@@ -1372,7 +1330,7 @@
         border-radius: 50%;
         background: var(--brand);
         color: #000;
-        border: 6px solid #000;
+        border: 6px solid var(--night);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -2076,7 +2034,7 @@
 
       /* Footer */
       .footer {
-        background: #000;
+        background: var(--night);
         color: #fff;
         border-top: 6px solid var(--brand);
       }
@@ -2338,16 +2296,6 @@
         }
       }
       @media (max-width: 720px) {
-        .topbar .wrap {
-          justify-content: center;
-          row-gap: 6px;
-          padding-block: 8px;
-        }
-        .topbar .items,
-        .topbar .phones {
-          gap: 16px;
-          justify-content: center;
-        }
         .header-cta .btn {
           display: none;
         }
@@ -2385,72 +2333,6 @@
     </style>
   </head>
   <body>
-    <!-- TOP BAR -->
-    <div class="topbar">
-      <div class="wrap">
-        <div class="items">
-          <span
-            ><svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z" />
-              <path d="M8.5 12l2.5 2.5 4.5-5" /></svg
-            >10 Year Warranty</span
-          ><span
-            ><svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <circle cx="12" cy="12" r="9" />
-              <path d="M12 7v5l3 2" /></svg
-            >Same or Next Day Service</span
-          >
-        </div>
-        <div class="phones">
-          <a href="tel:0800732378"
-            ><svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path
-                d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"
-              /></svg
-            >0800 732 378</a
-          ><a href="tel:021758976"
-            ><svg
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path
-                d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"
-              /></svg
-            >021 758 976</a
-          >
-        </div>
-      </div>
-    </div>
-
     <!-- HEADER -->
     <header class="header">
       <div class="wrap">
